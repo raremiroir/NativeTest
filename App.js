@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useState, useRef } from "react";
 
 import * as MediaLibrary from 'expo-media-library';
 import * as ImagePicker from 'expo-image-picker';
 import { captureRef } from 'react-native-view-shot';
+import domtoimage from 'dom-to-image';
 
 import ImageViewer from "./components/ImageViewer";
 import Button from './components/Button';
@@ -64,6 +65,9 @@ export default function App() {
   };
 
   const onSaveImageAsync = async () => {
+    if (Platform.OS !== "web") {
+      
+    }
     try {
       const localUri = await captureRef(imageRef, {
         height: 440,
